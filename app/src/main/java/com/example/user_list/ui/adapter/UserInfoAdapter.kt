@@ -9,14 +9,13 @@ import com.example.user_list.R
 import com.example.user_list.data.db.entity.UserInfo
 import com.example.user_list.databinding.UserInfoTileBinding
 
-class UserInfoAdapter(var onTileClicked: UserInfoAdapter.OnTileClicked,private val dataset: MutableList<UserInfo> = ArrayList(),) :
+class UserInfoAdapter(var onTileClicked: OnTileClicked,private val dataset: MutableList<UserInfo> = ArrayList()) :
     RecyclerView.Adapter<UserInfoAdapter.ItemViewHolder>() {
 
     interface OnTileClicked {
         fun onEditClicked(userInfo: UserInfo)
         fun onDeleteClicked(item: UserInfo)
     }
-
 
     inner class ItemViewHolder(private val itemBinding: UserInfoTileBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
