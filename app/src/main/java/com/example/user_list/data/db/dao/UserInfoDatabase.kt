@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.user_list.data.db.entity.UserInfo
+import kotlinx.coroutines.CoroutineScope
 
 
 @Database(
@@ -19,7 +20,9 @@ abstract class UserInfoDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var instance: UserInfoDatabase? = null
-        operator fun invoke(context: Context) = instance ?: synchronized(this) {
+        operator fun invoke(
+            context: Context, scope: CoroutineScope
+        ) = instance ?: synchronized(this) {
             instance ?: Room.databaseBuilder(
                 context.applicationContext,
                 UserInfoDatabase::class.java,

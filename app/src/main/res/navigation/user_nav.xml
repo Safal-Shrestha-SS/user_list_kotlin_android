@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_nav"
+    app:startDestination="@id/userInfoListFragment">
+    <fragment
+        android:id="@+id/userInfoListFragment"
+        android:name="com.example.user_list.ui.fragment.UserInfoListFragment"
+        android:label="fragment_user_info_list"
+        tools:layout="@layout/fragment_user_info_list" >
+        <action
+            android:id="@+id/userInfoListFragmetn"
+            app:destination="@id/addUserInfoFragment" />
+        <action
+            android:id="@+id/navigateToAddUserInfoFragment"
+            app:destination="@id/addUserInfoFragment"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/addUserInfoFragment"
+        android:name="com.example.user_list.ui.fragment.AddUserInfoFragment"
+        android:label="AddUserInfoFragment" >
+        <action
+            android:id="@+id/navitateToUserListFragment"
+            app:destination="@id/userInfoListFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <argument
+            android:name="userName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="phoneNo"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>
