@@ -41,8 +41,8 @@ class AddUserInfoFragment : Fragment() {
         viewModelFactory = UserInfoViewModelFactory(UserInfoApplication(view.context).userInfoRepository)
         viewModel = ViewModelProvider(this,viewModelFactory)[UserInfoViewModel::class.java]
         args?.let {
-            binding.editName.setText(args?.userName)
-            binding.editPhoneNo.setText(args?.phoneNo)
+            binding.editName.setText(it.userName)
+            binding.editPhoneNo.setText(it.phoneNo)
         }
         val userName= binding.editName.text
         val phoneNo= binding.editPhoneNo.text
