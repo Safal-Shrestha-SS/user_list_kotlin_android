@@ -2,8 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <data>
 
+    <data>
+        <variable
+            name="item"
+            type="com.example.user_list.ui.view_model.UserInfoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +21,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Phone Number"
+            android:text="@={item.userInfoField.user_phone}"
             android:textColorHint="@color/white"
             android:inputType="phone"
             android:minHeight="48dp"
@@ -42,6 +46,7 @@
             android:ems="10"
             android:textColor="@color/white"
             android:hint="Name"
+            android:text="@={item.userInfoField.user_name}"
             android:textColorHint="@color/white"
             android:inputType="textPersonName"
             android:minHeight="48dp"
@@ -66,6 +71,7 @@
             android:layout_height="48dp"
             android:layout_marginTop="40dp"
             android:text="Add"
+            android:onClick="@{item::addEditField}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

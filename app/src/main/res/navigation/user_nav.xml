@@ -9,21 +9,22 @@
         android:name="com.example.user_list.ui.fragment.UserInfoListFragment"
         android:label="fragment_user_info_list"
         tools:layout="@layout/fragment_user_info_list" >
+
         <action
-            android:id="@+id/userInfoListFragmetn"
-            app:destination="@id/addUserInfoFragment" />
-        <action
-            android:id="@+id/navigateToAddUserInfoFragment"
-            app:destination="@id/addUserInfoFragment"
+            android:id="@+id/navigateToEdit"
+            app:destination="@id/editUserInfoFragment"
             app:enterAnim="@android:anim/slide_out_right"
             app:exitAnim="@android:anim/slide_in_left" />
+
+
+
     </fragment>
     <fragment
-        android:id="@+id/addUserInfoFragment"
+        android:id="@+id/editUserInfoFragment"
         android:name="com.example.user_list.ui.fragment.AddUserInfoFragment"
         android:label="AddUserInfoFragment" >
         <action
-            android:id="@+id/navitateToUserListFragment"
+            android:id="@+id/editPage"
             app:destination="@id/userInfoListFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />

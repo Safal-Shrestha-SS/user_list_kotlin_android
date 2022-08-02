@@ -32,31 +32,49 @@ class AddUserInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_add_user_info,container,false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_add_user_info, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModelFactory = UserInfoViewModelFactory(UserInfoApplication(view.context).userInfoRepository)
-        viewModel = ViewModelProvider(this,viewModelFactory)[UserInfoViewModel::class.java]
-        args?.let {
-            binding.editName.setText(it.userName)
-            binding.editPhoneNo.setText(it.phoneNo)
-        }
-        val userName= binding.editName.text
-        val phoneNo= binding.editPhoneNo.text
-        binding.buttonAddUserInfo.setOnClickListener {
-            Log.d("AddUserInfo",userName.toString())
-            if(args?.userName!= null){
-                viewModel.upsert(UserInfo(id=args?.id!!, user_name = userName.toString(), phoneNo.toString().toLong()))
-            }
-            else{
-                viewModel.upsert(UserInfo(user_name = userName.toString(), user_phone = phoneNo.toString().toLong()))
+        viewModelFactory =
+            UserInfoViewModelFactory(UserInfoApplication(view.context).userInfoRepository)
+        viewModel = ViewModelProvider(this, viewModelFactory)[UserInfoViewModel::class.java]
+        binding.item= viewModel
 
-            }
-            Navigation.findNavController(binding.root).popBackStack()
+
+        //todo store args in viewmodel
+        viewModel.setArgs(args)
+        viewModel.showFragment.observe(viewLifecycleOwner){
+            if (it==false) Navigation.findNavController(binding.root).popBackStack()
         }
+//        binding.buttonAddUserInfo.setOnClickListener {
+//            Log.d("buttonAdd","I am clicked")
+//            Navigation.findNavController(binding.root).popBackStack() }
+//        binding.buttonAddUserInfo.setOnClickListener {
+//            Log.d("AddUserInfo", userName.toString())
+//            viewModel.setUserInfoField(UserInfo())
+////            if (args?.userName != null) {
+////                viewModel.upsert(
+////                    UserInfo(
+////                        id = args?.id!!,
+////                        user_name = userName.toString(),
+////                        phoneNo.toString()
+////                    )
+////                )
+////            } else {
+////                viewModel.upsert(
+////                    UserInfo(
+////                        user_name = userName.toString(),
+////                        user_phone = phoneNo.toString()
+////                    )
+////                )
+////
+////            }
+////            Navigation.findNavController(binding.root).popBackStack()
+//        }
 
 
     }

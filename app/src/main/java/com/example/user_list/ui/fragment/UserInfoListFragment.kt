@@ -33,14 +33,14 @@ class UserInfoListFragment : Fragment(), UserInfoAdapter.OnTileClicked {
         binding.userInfoRV.adapter = adapter
         viewModel.getAllUserInfo().observe(viewLifecycleOwner) { adapter.refreshDataList(it) }
         binding.addUserInfo.setOnClickListener {
-            val action = UserInfoListFragmentDirections.navigateToAddUserInfoFragment(null,null)
+            val action = UserInfoListFragmentDirections.navigateToEdit(null,null,0)
             Navigation.findNavController(binding.root).navigate(action)
         }
         return binding.root
     }
 
     override fun onEditClicked(userInfo: UserInfo) {
-        val action = UserInfoListFragmentDirections.navigateToAddUserInfoFragment(userInfo.user_name,userInfo.user_phone.toString(),userInfo.id)
+        val action = UserInfoListFragmentDirections.navigateToEdit(userInfo.user_name,userInfo.user_phone.toString(),userInfo.id)
         Navigation.findNavController(binding.root).navigate(action)
     }
 
